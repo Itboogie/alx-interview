@@ -1,16 +1,30 @@
 #!/usr/bin/python3
 """
-Island Perimeter
+Module used to
 """
 
+
 def island_perimeter(grid):
+    """[summary]
+
+    Args:
+        grid ([type]): [description]
+
+    Returns:
+        [type]: [description]
     """
-     returns the perimeter of the island described in grid
-    :param grid:
-    :return:
-    """
-    area = 0
-    for row in grid + list(map(list, zip(*grid))):
-        for i1, i2 in zip([0] + row, row + [0]):
-            area += int(i1 != i2)
-    return area
+
+    perimeter = 0
+    m = len(grid)
+    n = len(grid[0])
+
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                for x, y in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
+                    α, β = i + x, j + y
+                    # print(α, β)
+                    if α >= m or β >= n or α < 0 or β < 0 or grid[α][β] == 0:
+                        perimeter += 1
+
+    return perimeter
